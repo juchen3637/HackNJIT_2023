@@ -8,8 +8,8 @@ export default {
     extend: {
       colors: {
         'navy': '#122D60',
-        'white': '#F5F5F5'
-      }
+        'offwhite': '#F5F5F5'
+      },
     },
   },
   plugins: [],
