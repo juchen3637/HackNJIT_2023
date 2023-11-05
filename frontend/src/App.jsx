@@ -37,29 +37,35 @@ function App() {
   }
 
   return (
-    <div className='bg-offwhite flex min-h-screen w-full'>
-      <div className="flex justify-center bg-navy fixed left-0 right-0 h-10 py-2">
-        <h1 className="text-offwhite text-lg font-bold">TidePal</h1>
-      </div>
-      <div className="flex flex-col min-h-screen w-full">
-        <div className="flex mt-16 justify-evenly">
-          <h1 className="text-navy text-lg font-bold ">Longitude</h1>
-          <h1 className="text-navy text-lg font-bold">Latitude</h1>
-        </div>
-        <div className="flex justify-evenly mt-10">
-          <input className="border-navy border-2 remove-arrow" type="number"></input>
-          <input className="border-navy border-2 remove-arrow" type="number"></input>
-        </div>
-        <div className="flex justify-center mt-10">
-          <button className="text-offwhite bg-navy p-3 font-bold">Calculate</button>
-        </div>
-        <div className="flex justify-center mt-10">
-          <h1 className="text-navy font-bold text-lg">-OR-</h1>
-        </div>
-        <div className="flex justify-center mt-10">
-          <button className="bg-navy text-offwhite p-3">Get current location</button>
+    <div className='bg-offwhite flex flex-col min-h-screen w-full'>
+      <h1 className="text-offwhite text-5xl font-bold text-center bg-navy fixed left-0 right-0 h-16 py-2">TidePal</h1>
+      
+      <div className="flex mt-16 w-full">
+        <div className="flex w-full space-x-14 justify-center">
+
+          <div className="flex flex-col items-center w-52 mt-4">
+            <h1 className="text-navy text-lg font-bold ">Longitude</h1>
+            <input className="border-navy border-2" type="number" />
+          </div>
+          <div className="flex flex-col w-52 items-center mt-4">
+            <h1 className="text-navy text-lg font-bold">Latitude</h1>
+            <input className="border-navy border-2" type="number" />
+          </div>
+    
         </div>
       </div>
+      <button className="text-offwhite w-28 mt-5 self-center bg-navy p-3 font-bold">Calculate</button>
+      <h1 className="text-navy mt-2 self-center font-bold text-lg">-OR-</h1>
+      <button className="bg-navy text-offwhite p-3 w-42 mt-2 mb-12 self-center font-bold">Get current location</button>
+
+        <div>
+          <DisplayInfo 
+            data={info}
+            tide={highTide}
+            activity={activity}
+          />
+        </div>
+
     </div>
   )
 }
