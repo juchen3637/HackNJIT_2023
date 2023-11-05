@@ -1,5 +1,6 @@
 import DisplayInfo from "./components/DisplayInfo.jsx";
 import highTide from './images/high-tide.png';
+import {useState} from 'react';
 
 function App() {
   let info = {
@@ -8,6 +9,33 @@ function App() {
     type: "high"
   };
   const activity = 'fishing';
+  const [lat, setLat] = useState(0);
+  const [lng, setLon] = useState(0);
+  const [tideInfo, setTideInfo] = useState({});
+  const [moonPhase, setMoonPhase] = useState({});
+
+  const fetchTideInfo = () => {
+    return fetch(`https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${lng}&${Date()}&end=${Date()}`, {
+      headers: {
+        'Authorization': `${import.meta.env.VITE_STORMGLASS_TOKEN}`
+      }
+    }).then((response) => response.json())
+    .then((jsonData) => {
+      setTideInfo(jsonData.data);
+    })
+  }
+  
+  const fetchMoonPhase = () => {
+    return fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Herndon,VA?unitGroup=us&key=${import.meta.env.VITE_VISUAL_CROSSING_TOKEN}&include=days&elements=moonphase`, {
+      headers: {
+        'Authorization': `${import.meta.env.VITE_VISUAL_CROSSING_TOKEN}`
+      }
+    }).then((response) => response.json())
+    .then((jsonData) => {
+      setMoonPhase(jsonData.currentConditions.moonphase);
+    })
+  }
+
   return (
     <div className='bg-offwhite flex min-h-screen w-full'>
       <div className="flex justify-center bg-navy fixed left-0 right-0 h-10 py-2">
